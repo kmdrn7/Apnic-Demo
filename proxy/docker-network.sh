@@ -1,0 +1,1 @@
+ip ad | grep 'eth0' | grep '/16' | awk '{print $2}' | awk -F '.' '{printf "allow %s.%s.0.0/16;\n",$1,$2}' >> /etc/nginx/conf.d/ip-list.conf
