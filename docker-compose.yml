@@ -4,8 +4,17 @@ version: '3'
 services:
     app:
         build: app
+        networks: 
+            - apnic_net_default
 
     proxy:
         build: proxy
         ports: 
-            - "8088:80"
+        - "8088:80"
+        networks: 
+            - apnic_net_default
+
+networks:
+    apnic_net_default:
+        external:
+            name: apnic_net

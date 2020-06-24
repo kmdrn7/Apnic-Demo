@@ -25,10 +25,10 @@ then
   http_response=$( head -n 1 apnic.txt | awk '{print $2}' )
   if [ $http_response -eq 200 ]
   then
-    cat apnic.txt | grep "JP|ipv4" | awk -F "|" '{ printf "allow %s/24;\n", $4 }' > ip-list.conf
+    cat apnic.txt | grep "JP|ipv4" | awk -F "|" '{ printf "allow %s/24;\n", $4 }' > /etc/nginx/conf.d/ip-list.conf
   else
     echo "$(date) - Terjadi kesalahan saat melakukan fetching data." >> error.log
   fi
 else
-  echo "allow all;" > ip-list.conf
+  echo "allow all;" > /etc/nginx/conf.d/ip-list.conf
 fi
